@@ -1,6 +1,10 @@
 # OpenProxy
 tcp proxy
 
+## Install
+* Clone https://github.com/joeke80215/openproxy.git
+* ```go build -v -o proxy```
+
 ## Usage
 ```./proxy -h <HOST IP>:<PORT> -p <PORT>```
 
