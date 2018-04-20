@@ -12,7 +12,7 @@ type config struct {
 var (
 	Cfg *config
 	p = flag.String("p","8080","Listen on ?")
-	h = flag.String("h","192.168.0.200:7001","Target host and port.")
+	h = flag.String("h","127.0.0.1:80","Target <host:port>.")
 )
 
 func init() {
