@@ -4,16 +4,16 @@ import (
 	"net"
 	"fmt"
 	"log"
-	"../config"
+	"../cmd"
 )
 
 func StartProxy () {
-	ln, err := net.Listen("tcp", fmt.Sprintf(":%s",config.Cfg.Port))
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%s", cmd.Cfg.Port))
 	if err != nil {
 		log.Fatalf("failed to bind: %s", err)
 	}
 
-	log.Printf("listening on %s, proxy %s", config.Cfg.Port, config.Cfg.HostIP)
+	log.Printf("listening on %s, proxy %s", cmd.Cfg.Port, cmd.Cfg.HostIP)
 
 	for {
 		conn, err := ln.Accept()
@@ -22,6 +22,6 @@ func StartProxy () {
 			continue
 		}
 		log.Println("Remote IP : ",conn.RemoteAddr().String(),)
-		go handleClinet(conn, config.Cfg.HostIP)
+		go handleClinet(conn, cmd.Cfg.HostIP)
 	}
 }
