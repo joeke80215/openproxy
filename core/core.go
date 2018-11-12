@@ -1,14 +1,15 @@
 package core
 
 import (
-	"net"
 	"fmt"
 	"log"
-	"../config"
+	"net"
+
+	"github.com/joeke80215/openproxy/config"
 )
 
-func StartProxy () {
-	ln, err := net.Listen("tcp", fmt.Sprintf(":%s",config.Cfg.Port))
+func StartProxy() {
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%s", config.Cfg.Port))
 	if err != nil {
 		log.Fatalf("failed to bind: %s", err)
 	}
@@ -21,7 +22,7 @@ func StartProxy () {
 			log.Printf("failed to accept: %s", err)
 			continue
 		}
-		log.Println("Remote IP : ",conn.RemoteAddr().String(),)
+		log.Println("Remote IP : ", conn.RemoteAddr().String())
 		go handleClinet(conn, config.Cfg.HostIP)
 	}
 }
